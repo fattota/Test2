@@ -129,19 +129,39 @@ class RadioTest {
     @Test
     void shouldCheckIncreaseVolumeWithinTheLimit() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(4);
+        radio.setCurrentVolume(95);
         radio.increaseVolume();
-        int expected = 5;
+        int expected = 96;
         int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
 
     @Test
-    void shouldCheckIncreaseVolumeMoreThanTen() {
+    void shouldCheckIncreaseVolumeLessThanTheLimit() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(-1);
         radio.increaseVolume();
-        int expected = 10;
+        int expected = 1;
+        int actual = radio.getCurrentVolume();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldCheckIncreaseVolumeLowerRange() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(0);
+        radio.increaseVolume();
+        int expected = 1;
+        int actual = radio.getCurrentVolume();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldCheckIncreaseVolumeMoreThanHundred() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(101);
+        radio.increaseVolume();
+        int expected = 1;
         int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
@@ -181,7 +201,7 @@ class RadioTest {
         Radio radio = new Radio();
         radio.setCurrentVolume(20);
         radio.decreaseVolume();
-        int expected = 0;
+        int expected = 19;
         int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
@@ -203,5 +223,14 @@ class RadioTest {
         int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
+    @Test
+    void shouldNumberOfStations() {
+        Radio radio = new Radio(10);
+        radio.getNumberOfStations();
+        int expected = 10;
+        int actual = radio.getNumberOfStations();
+        assertEquals(expected, actual);
+    }
+
 
 }
