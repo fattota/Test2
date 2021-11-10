@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
+
     @Test
     void shouldCheckCurrentStationOverLimit() {
         Radio radio = new Radio();
@@ -227,11 +228,9 @@ class RadioTest {
     @Test
     void shouldCheckNumberOfStations() {
         Radio radio = new Radio(10);
-        radio.getNumberOfStations();
         int expected = 10;
         int actual = radio.getNumberOfStations();
         assertEquals(expected, actual);
     }
-
 
 }
